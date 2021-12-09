@@ -63,8 +63,8 @@ public class OboeAudioRenderersFactory extends DefaultRenderersFactory {
 
     protected AudioProcessor[] buildAudioProcessor() {
         AudioProcessor[] processors = new AudioProcessor[]{
-                new WanosAudioProcessor(
-                        new WanosAudioProcessor.OboeAudioBufferSink())};
+                new OboeAudioProcessor(
+                        new OboeAudioProcessor.OboeAudioBufferSink())};
         return processors;
     }
 }

@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class WanosAudioProcessor implements AudioProcessor {
+public class OboeAudioProcessor implements AudioProcessor {
 
     private static final String TAG = "NewTVTeeAudioProcessor";
 
@@ -78,7 +78,7 @@ public class WanosAudioProcessor implements AudioProcessor {
      * @param audioBufferSink The audio buffer sink that will receive input queued to this audio
      *                        processor.
      */
-    public WanosAudioProcessor(AudioBufferSink audioBufferSink) {
+    public OboeAudioProcessor(AudioBufferSink audioBufferSink) {
         this.audioBufferSink = Assertions.checkNotNull(audioBufferSink);
 
         buffer = EMPTY_BUFFER;
@@ -119,6 +119,8 @@ public class WanosAudioProcessor implements AudioProcessor {
         }
 
         if (handled) {
+            // If the oboe sink have handled the audio data, at here to put the silence audio to
+            // AudioTrack sink to ensure the a/v sync mode do as normal.
             if (zeroBuffer == null || zeroBuffer.capacity() < remaining) {
                 zeroBuffer = ByteBuffer.allocate(remaining);
             }
